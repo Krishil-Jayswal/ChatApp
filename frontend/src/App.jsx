@@ -1,21 +1,19 @@
 import { useEffect } from "react";
 import { Navigate, Route, Routes } from "react-router-dom";
 import { ToastContainer } from "react-toastify";
-import "react-toastify/dist/ReactToastify.css";
 import { Spinner } from "./components";
-import { useMe } from "./hooks/useMe";
 import { Auth, Chat, ProfileUpdate } from "./pages";
-import useAuthStore from "./store/AuthStore";
+import "react-toastify/dist/ReactToastify.css";
+import { useAuthStore } from "./store";
 
 const App = () => {
-  const { loading, checkAuth } = useMe();
-  const { user } = useAuthStore();
+  const { user, checkAuth, isCheckingAuth } = useAuthStore();
 
   useEffect(() => {
     checkAuth();
   }, [checkAuth]);
 
-  if (loading && !user) {
+  if (isCheckingAuth && !user) {
     return <Spinner />;
   }
 
@@ -23,11 +21,17 @@ const App = () => {
     <>
       <ToastContainer />
       <Routes>
-        <Route path="/" element={user ? <Navigate to={"/chat"} /> : <Auth />} />
-        <Route path="/chat" element={user ? <Chat /> : <Chat />} />
+        <Route
+          path="/"
+          element={!user ? <Auth /> : <Navigate to={"/chat"} />}
+        />
+        <Route 
+        path="/chat" 
+        element={user ? <Chat /> : <Navigate to={"/"} />}
+        />
         <Route
           path="/profile"
-          element={user ? <ProfileUpdate /> : <ProfileUpdate />}
+          element={user ? <ProfileUpdate /> : <Navigate to={"/"} />}
         />
       </Routes>
     </>

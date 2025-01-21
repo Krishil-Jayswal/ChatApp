@@ -6,7 +6,7 @@ import Message from "../models/message.model"; // .js
 ("END");
 
 //TODO: Pagination using the timestamp
-export const getMessages = async (req: Request, res: Response) => {
+export const getOldChats = async (req: Request, res: Response) => {
   try {
     // fetch the userId and userId
     const conversation = req.params["id"];

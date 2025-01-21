@@ -12,7 +12,7 @@ V1Router.use("/auth", authRouter);
 
 V1Router.use("/user", userRouter);
 
-V1Router.use("/message", messageRouter);
+V1Router.use("/chat", messageRouter);
 
 V1Router.use("/conversation", conversationRouter);
 

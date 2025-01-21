@@ -1,11 +1,11 @@
 "USE SCRIPT";
 import { Router } from "express";
-import { getMessages } from "../controllers/message.controller"; // .js
+import { getOldChats } from "../controllers/chat.controller"; // .js
 import { protectRoute } from "../middlewares/auth.middleware"; // .js
 ("END");
 
 const messageRouter = Router();
 
-messageRouter.get("/:id", protectRoute, getMessages);
+messageRouter.get("old-chats/:id", protectRoute, getOldChats);
 
 export default messageRouter;

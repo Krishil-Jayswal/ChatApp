@@ -1,17 +1,14 @@
 import { useState, useEffect } from "react";
 import assets from "../../assets";
-import { useLogin } from "../../hooks/useLogin";
-import { useSignup } from "../../hooks/useSignup";
 import "./Auth.css";
 import { Spinner, AnimationWrapper } from "../../components";
+import { useAuthStore } from "../../store";
 
 export const Auth = () => {
   const [currState, setCurrState] = useState("Login");
   const [isPassVisible, setPassVisible] = useState(false);
-  const { login, loading: isLoggingIn } = useLogin();
-  const { signup, loading: isSigningUp } = useSignup();
-
   const [formProps, setFormProps] = useState({ username: "", password: "" });
+  const { signup, login, isLoggingIn, isSigningUp } = useAuthStore();
 
   useEffect(() => {
     if (currState === "Sign Up") {
@@ -20,12 +17,6 @@ export const Auth = () => {
       setFormProps({ username: "", password: "" });
     }
   }, [currState]);
-
-  // const [formProps, setFormProps] = useState(
-  //   currState === "Sign Up"
-  //     ? { fullname: "", username: "", password: "", gender: "" }
-  //     : { username: "", password: "" }
-  // );
 
   const toggleState = () => {
     setCurrState((prev) => (prev === "Sign Up" ? "Login" : "Sign Up"));

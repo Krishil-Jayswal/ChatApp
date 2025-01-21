@@ -10,7 +10,7 @@ import {
 
 const conversationRouter = Router();
 
-conversationRouter.post("/newConversation/:id", protectRoute, newConversation);
+conversationRouter.post("/new-conversation/:id", protectRoute, newConversation);
 
 conversationRouter.get("/contacts", protectRoute, getContactList);
 

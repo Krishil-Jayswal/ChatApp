@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import { useState } from "react";
 import assets from "../../assets";
 import "./InputBox.css";
 export const InputBox = () => {

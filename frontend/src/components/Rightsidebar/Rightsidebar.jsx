@@ -1,8 +1,10 @@
 import assets from "../../assets";
+import { useAuthStore } from "../../store/AuthStore";
 import "./Rightsidebar.css";
-import { useLogout } from "../../hooks/useLogout";
+
 export const Rightsidebar = () => {
-  const { logout } = useLogout();
+  const { logout } = useAuthStore();
+
   return (
     <div className="rs">
       <div className="rs-profile">
